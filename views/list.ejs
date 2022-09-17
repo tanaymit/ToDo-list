@@ -13,24 +13,28 @@
 <body>
     <div class="box" id="heading">
         <h1>
-            <%= DayKind %>
+            <%= listTitle %>
         </h1>
     </div>
 
     <div class="box">
         <% for (var i=0; i < listItem.length ; i++){ %>
+            <form action="/delete" method="post">
+                <input type="hidden" name="listName" value="<%= listTitle %>"></input>
             <div class="item">
-                <input type="checkbox">
+                <input type="checkbox" name="cb" value="<%= listItem[i]._id %>" onChange="this.form.submit();">
                 <p>
-                    <%= listItem[i] %>
+                    <%= listItem[i].name %>
                 </p>
             </div>
-
+            
+        </form>
+ 
             <% } %>
 
         <form class="item" action="/" method="post">
         <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="btn">+</button>
+        <button type="submit" name="btn" value="<%= listTitle %>">+</button>
     </form>
     </div>
 
